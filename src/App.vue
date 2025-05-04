@@ -1,11 +1,26 @@
-<script setup lang="ts">
+<script lang="ts">
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+export default {
+  setup() {
+    const defaultLayout = 'default';
+
+    const route = useRoute();
+
+    const layout = computed(
+      () => `${route.meta.layout || defaultLayout}-layout`,
+    );
+
+    return {
+      layout,
+    };
+  },
+};
 </script>
 
 <template>
-  <div>
-    <h1 class="text-2xl text-zinc-700">Hello World</h1>
-  </div>
+  <component :is="layout">
+    <RouterView />
+  </component>
 </template>
-
-<style scoped>
-</style>
