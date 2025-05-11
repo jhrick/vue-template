@@ -5,6 +5,12 @@ import router from '@/routes';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 
+import Default from './layouts/Default.vue';
+
 const pinia = createPinia();
 
-createApp(App).use(router).use(pinia).mount('#app');
+createApp(App)
+  .component('default-layout', Default)
+  .use(router)
+  .use(pinia)
+  .mount('#app');
